@@ -190,15 +190,20 @@ def main():
         for i, bomb in enumerate(bombs):
             for n, beam in enumerate(beams):
                 if beam.rct.colliderect(bomb.rct):  #ビームと爆弾の衝突判定
-                    beams[n] = None
                     bombs[i] = None
                     bird.change_img(6, screen)  #こうかとん喜ぶ画像に切り替え
                     score.score_num += 1
                     pg.display.update()
-         
+           
         bombs = [bomb for bomb in bombs if bomb is not None]  #Noneを取り除く
+        for a, b in enumerate(beams):
+            if check_bound(b.rct) == (True,True):
+                pass
+            else:
+                beams[a] = None
         beams = [beam for beam in beams if beam is not None]
 
+        print(len(beams))
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
         for beam in beams:
@@ -209,7 +214,6 @@ def main():
         pg.display.update()
         tmr += 1
         clock.tick(50)
-
 
 if __name__ == "__main__":
     pg.init()
