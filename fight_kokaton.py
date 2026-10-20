@@ -143,12 +143,23 @@ class Bomb:
 
 
 class Score:
+    """
+    スコアに関するクラス
+    """
     def __init__(self):
+        """
+        引数なし
+        スコアの初期値とSurfaceの生成
+        """
         self.score_num = 0
         self.fonto = pg.font.Font(None, 50)
         self.img = self.fonto.render(f"Score: {self.score_num}",0, (0, 0, 255))
 
     def update(self, screen: pg.Surface):
+        """
+        スコアを画面に表示
+        引数screen：画面Surface
+        """
         self.img = self.fonto.render(f"Score: {self.score_num}",0, (0, 0, 255))
         screen.blit(self.img, (100,50))
         
